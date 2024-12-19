@@ -21,13 +21,17 @@ document.addEventListener('DOMContentLoaded', () => {
     selectCurrency.addEventListener('change', readValue);
 })
 
-function consultCrypto() {
+async function consultCrypto() {
     const url = 'https://min-api.cryptocompare.com/data/top/totalvolfull?limit=10&tsym=USD';
 
-    fetch(url) 
-        .then( response => response.json() )
-        .then( result => getCrypto(result.Data) )
-        .then( cryptocurrencies => selectCrypto(cryptocurrencies) )
+    try {
+        const response = await fetch(url);
+        const result = await response.json();
+        const cryptocurrencies = await getCrypto(result.Data)
+        selectCrypto(cryptocurrencies)
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 function selectCrypto(cryptocurrencies) {
@@ -76,18 +80,20 @@ function showError(msg) {
     }
 }
 
-function consultAPI() {
+async function consultAPI() {
     const { currency, cryptocurrencies } = objSearch;
 
     const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${cryptocurrencies}&tsyms=${currency}`;
 
     showSpinner();
 
-    fetch(url)
-        .then( response => response.json() )
-        .then( quote => {
-            showQuote(quote.DISPLAY[cryptocurrencies][currency]);
-        } )
+    try {
+        const response = await fetch(url);
+        const quote = await response.json();
+        showQuote(quote.DISPLAY[cryptocurrencies][currency]);
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 function showQuote(quote) {
