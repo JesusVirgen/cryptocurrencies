@@ -21,7 +21,7 @@ A web application that allows users to check real-time prices of major cryptocur
 
 - HTML5
 - CSS3
-- JavaScript (ES6+)
+- JavaScript
 - CryptoCompare API
 
 ## Getting Started
@@ -34,11 +34,16 @@ A web application that allows users to check real-time prices of major cryptocur
 ### Installation
 
 1. Clone the repository:
-   `bash`
+
+   ```bash
    git clone https://github.com/JesusVirgen/cryptocurrencies.git
+   ```
 
 2. Navigate to the project directory:
+
+   ```bash
    cd cryptocurrency-price-checker
+   ```
 
 3. Open `index.html` in your web browser
 
